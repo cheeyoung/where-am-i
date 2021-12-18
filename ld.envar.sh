@@ -1,0 +1,27 @@
+#	20090414 Added OBJECT_MODE=64
+#	20070917 HP-UX 11.23 IA64
+#	20070901 HP Tru64 5.1
+
+'Linux')
+'OSF1')
+    LD_LIBRARY_PATH=
+    export LD_LIBRARY_PATH
+    ;;
+'AIX')
+    OBJECT_MODE=(64|32)
+    LIBPATH=
+    export OBJECT_MODE LIBPATH
+    ;;
+'HP-UX')
+    LD_LIBRARY_PATH=
+    SHLIB_PATH=
+    export SHLIB_PATH LD_LIBRARY_PATH
+    ;;
+'SunOS')
+    LD_LIBRARY_PATH_64=
+    LD_LIBRARY_PATH=
+    export LD_LIBRARY_PATH LD_LIBRARY_PATH_64
+    ;;
+*)
+    ;;
+esac
