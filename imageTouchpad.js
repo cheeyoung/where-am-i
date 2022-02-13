@@ -22,9 +22,13 @@ function handleTouchstart(ev)
   ev.preventDefault() ;
   
   let touches = ev.changedTouches ;
+  console.info('INFO: touchstart:') ;
   for (let i = 0; i < touches.length; i++)
   {
-    console.info('(' + touches[i].pageX + ', ' + touches[i].pageY + ')') ;
+    console.info('INFO: (' + touches[i].pageX + ', ' + touches[i].pageY + ')') ;
+    ctx01.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false) ;
+    ctx01.fillStyle = 'white' ;
+    ctx01.fill() ;
   }
 }
 
