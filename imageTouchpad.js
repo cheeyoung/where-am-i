@@ -21,15 +21,14 @@ function handleTouchstart(ev)
 {
   ev.preventDefault() ;
   
-  let touches = ev.changedTouches ;
-  console.info('INFO: touchstart:') ;
-  for (let i = 0; i < touches.length; i++)
-  {
-    console.info('INFO: (' + touches[i].pageX + ', ' + touches[i].pageY + ')') ;
-    ctx01.arc(touches[i].pageX, touches[i].pageY, 4, 0, 2 * Math.PI, false) ;
-    ctx01.fillStyle = 'white' ;
-    ctx01.fill() ;
-  }
+  let touches = ev.targetTouches ;  // an array of touch objects
+  console.info('INFO: touchstart ' + touches.length + ' touch(es)') ;
+
+  // save the 1st touch
+  touches[0].identifier ;
+  touches[0].clientX ;
+  touches[0].clientY ;
+  touches[0].target.id ;
 }
 
 function handleTouchstop()
