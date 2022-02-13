@@ -26,14 +26,18 @@ function handleTouchstart(ev)
   ev.preventDefault() ;
   
   let touches = ev.changedTouches ;  // an array of touch objects
-  console.info('INFO: touchstart ' + touches.length + ' touch(es)') ;
 
   // save the 1st touch
-  pre01.innerText += touches[0].identifier + ', (' + touches[0].clientX + ', ' + touches[0].clientY + ') ' + touches[0].target.id ;
+  pre01.innerText = 'INFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
 }
 
-function handleTouchstop()
+function handleTouchstop(ev)
 {
+  ev.preventDefault() ;
+  
+  let touches = ev.changedTouches ;
+  
+  pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' stoped at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
 }
 
 function handleTouchcancel()
