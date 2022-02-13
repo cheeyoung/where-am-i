@@ -17,8 +17,15 @@ ctx01.fillRect(0, 0, canvas01.width, canvas01.height) ;
 // insert the canvas element to the section(document)
 document.getElementById('section-main').insertBefore(canvas01, document.getElementById('script-touchpad')) ;
 
-function handleTouchstart()
+function handleTouchstart(ev)
 {
+  ev.preventDefault() ;
+  
+  let touches = ev.changedTouches ;
+  for (let i = 0; i < touches.length; i++)
+  {
+    console.info('(' + touches[i].pageX + ', ' + touches[i].pageY + ')') ;
+  }
 }
 
 function handleTouchstop()
