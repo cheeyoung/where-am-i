@@ -5,6 +5,8 @@ var pre01 = document.createElement('pre') ;
 pre01.id = "log" ;
 pre01.class = "width: 300px" ;
 
+var x_start, y_start, x_stop, y_stop ;
+
 canvas01.addEventListener('touchstart', handleTouchstart, false) ;
 canvas01.addEventListener('touchend', handleTouchstop, false) ;
 canvas01.addEventListener('touchcancel', handleTouchcancel, false) ;
@@ -28,8 +30,22 @@ function handleTouchstart(ev)
   let touches = ev.changedTouches ;  // an array of touch objects
 
   // save the 1st touch
+  x_start = touches[0].clientX - r.left ;
+  y_start = touches[0].clientY - r.top ;
   pre01.innerText = 'INFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
+  pre01.innerText += '\nINFO: (' + x_start + ', ' + y_start + ')') ;
+}
+
+function drawLine(ce)  // canvas element
+{
+  var ctx01 = ce.getContext('2d') ;
+  ctx01.beginPath() ;
+  ctx01.moveTo(x_start, y_start) ;
+  ctx01.lineTo(x_stop, y_stop) ;
+  ctx01.closePath() ;
+  ctx01.lineWidth = 1 ;
+  ctx01.stroke() ;
 }
 
 function handleTouchstop(ev)
@@ -38,8 +54,13 @@ function handleTouchstop(ev)
   var r = canvas01.getBoundingClientRect() ;
   let touches = ev.changedTouches ;
   
+  x_stop = touches[0].clientX - r.left ;
+  y_stop = touches[0].clientY - r.top ;
   pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' stoped at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
+  pre01.innerText += '\nINFO: (' + x_stop + ', ' + y_stop + ')') ;
+
+  drawLine(canvas01) ;
 }
 
 function handleTouchcancel()
