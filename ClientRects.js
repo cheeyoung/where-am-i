@@ -12,7 +12,7 @@ canvas01.height = 200 ;
 var rects = canvas01.getClientRects() ;
 for (var i = 0; i != rects.length; i++)
 {
-  pre01.innerText = 'INFO: Rect ' + i + ' (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
+  pre01.innerText += '\nINFO: Rect ' + i + ' (' + rects[i].left + ', ' + rects[i].top + '), (' + rects[i].right + ', ' + rects[i].bottom + ')' ;
 }
 
 
