@@ -18,3 +18,13 @@ for (var i = 0; i != rects.length; i++)
 {
   pre01.innerText += '\nINFO: Rect ' + i + ' (' + rects[i].left + ', ' + rects[i].top + '), (' + rects[i].right + ', ' + rects[i].bottom + ')' ;
 }
+
+//
+fillCanvasWithBlack(canvas01) ;
+
+function fillCanvasWithBlack(ce)  // canvas element
+{
+  var ctx01 = ce.getContext('2d') ;
+  ctx01.fillStyle = 'black' ;
+  ctx01.fillRect(0, 0, ce.width, ce.height) ;
+}
