@@ -12,7 +12,8 @@ document.getElementById('section-main').insertBefore(pre01, document.getElementB
 //
 canvas01.width = 300 ;
 canvas01.height = 200 ;
-//var r = canvas01.getBoundingClientRect() ;
+var r = canvas01.getBoundingClientRect() ;
+pre01.innerText = 'INFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
 var rects = canvas01.getClientRects() ;
 for (var i = 0; i != rects.length; i++)
 {
