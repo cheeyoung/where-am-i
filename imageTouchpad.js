@@ -33,7 +33,7 @@ function handleTouchstart(ev)
   x_start = touches[0].clientX - r.left ;
   y_start = touches[0].clientY - r.top ;
   pre01.innerText = 'INFO: touch started at (' + x_start + ', ' + y_start + ')' ;
-  pre01.innerText += 'INFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
+  pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
 }
 
