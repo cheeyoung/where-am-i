@@ -32,9 +32,9 @@ function handleTouchstart(ev)
   // save the 1st touch
   x_start = touches[0].clientX - r.left ;
   y_start = touches[0].clientY - r.top ;
-  pre01.innerText = 'INFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
+  pre01.innerText = 'INFO: touch started at (' + x_start + ', ' + y_start + ')' ;
+  pre01.innerText += 'INFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
-  pre01.innerText += '\nINFO: (' + x_start + ', ' + y_start + ')' ;
 }
 
 function drawLine(ce)  // canvas element
@@ -57,9 +57,9 @@ function handleTouchstop(ev)
   
   x_stop = touches[0].clientX - r.left ;
   y_stop = touches[0].clientY - r.top ;
+  pre01.innerText += '\nINFO: touch stopped at (' + x_stop + ', ' + y_stop + ')' ;
   pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' stoped at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
-  pre01.innerText += '\nINFO: (' + x_stop + ', ' + y_stop + ')' ;
 
   drawLine(canvas01) ;
 }
