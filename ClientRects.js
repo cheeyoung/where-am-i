@@ -6,6 +6,9 @@ pre01.id = "pre01" ;
 pre01.class = "width: 300px" ;  // the same width as that of the canvas
 
 //
+document.getElementById('section-main').insertBefore(pre01, document.getElementById('script-touchpad')) ;
+
+//
 canvas01.width = 300 ;
 canvas01.height = 200 ;
 //var r = canvas01.getBoundingClientRect() ;
@@ -15,7 +18,5 @@ for (var i = 0; i != rects.length; i++)
   pre01.innerText += '\nINFO: Rect ' + i + ' (' + rects[i].left + ', ' + rects[i].top + '), (' + rects[i].right + ', ' + rects[i].bottom + ')' ;
 }
 
-
 //
 document.getElementById('section-main').insertBefore(canvas01, document.getElementById('script-touchpad')) ;
-document.getElementById('section-main').insertBefore(pre01, document.getElementById('script-touchpad')) ;
