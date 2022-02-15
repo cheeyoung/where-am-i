@@ -24,20 +24,22 @@ document.getElementById('section-main').insertBefore(pre01, document.getElementB
 function handleTouchstart(ev)
 {
   ev.preventDefault() ;
-  
+  var r = canvas01.getBoundingClientRect() ;
   let touches = ev.changedTouches ;  // an array of touch objects
 
   // save the 1st touch
   pre01.innerText = 'INFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
+  pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
 }
 
 function handleTouchstop(ev)
 {
   ev.preventDefault() ;
-  
+  var r = canvas01.getBoundingClientRect() ;
   let touches = ev.changedTouches ;
   
   pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' stoped at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
+  pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
 }
 
 function handleTouchcancel()
