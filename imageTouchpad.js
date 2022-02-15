@@ -45,6 +45,7 @@ function drawLine(ce)  // canvas element
   ctx01.lineTo(x_stop, y_stop) ;
   ctx01.closePath() ;
   ctx01.lineWidth = 1 ;
+  ctx01.strokeStyle = 'white' ;
   ctx01.stroke() ;
 }
 
