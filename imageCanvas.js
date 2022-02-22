@@ -17,7 +17,7 @@ var img = new Image() ;
 var iw, ih ;
 var sx, sy ;
 var dx, dy, dw, dh ;
-img.addEventListener('load', , false) ;
+img.addEventListener('load', setImgContentMetadata(), false) ;
 
 var x_start, y_start, x_stop, y_stop ;
 canvas01.addEventListener('touchstart', canvas01Touchstart, false) ;
@@ -31,16 +31,16 @@ document.getElementById('section-main').insertBefore(canvas02, document.getEleme
 document.getElementById('section-main').insertBefore(pre01, document.getElementById('script-trackpad')) ;
 
 img.src = 'https://img9.yna.co.kr/photo/yna/YH/2019/05/23/PYH2019052319550001300_P4.jpg' ;
-iw = img.naturalWidth ;
-ih = img.naturalHeight) ;
-canvas01.height = 300;
-sx = 0;
-sy = 0;
-canvas02.height = 300;
-dx = 0;
-dy = 0;
-dw = 0;
-dh = 0;
+
+function setImgContentMetadata()
+{
+  iw = img.naturalWidth ;
+  ih = img.naturalHeight ;
+  canvas01.height = 300 ;
+  sx = 0 ; sy = 0 ;
+  canvas02.height = 300 ;
+  dx = 0 ; dy = 0 ; dw = 0 ; dh = 0 ;
+}
 
 function updateCanvas01()
 {
