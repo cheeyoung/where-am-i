@@ -40,7 +40,7 @@ function handleImageLoad(i)
   sx = 0 ; sy = 0 ;
   canvas02.height = 300 ;
   dx = 0 ; dy = 0 ; dw = 0 ; dh = 0 ;
-  pre01.innerText = 'INFO: ' + iw + ' x ' + ih ;
+  //pre01.innerText = 'INFO: ' + iw + ' x ' + ih ;
   updateCanvas01() ;
 }
 
@@ -50,7 +50,7 @@ function updateCanvas01()
   const ch = canvas01.height ;
   let ctx = canvas01.getContext('2d') ;
   ctx.drawImage(img, sx, sy, cw, ch, 0, 0, cw, ch) ;
-  pre01.innerText += '\nINFO: (' + sx + ', ' + sy + '), ' + cw + ' x ' + ch ;
+  pre01.innerText += '\nINFO: (' + sx + ', ' + sy + '), ' + cw + ' x ' + ch + ', ' + iw + ' x ' + ih ;
 }
 
 function updateCanvas02()
@@ -68,7 +68,7 @@ function canvas01Touchstart(ev)
   // save the 1st touch
   x_start = touches[0].clientX - r.left ;
   y_start = touches[0].clientY - r.top ;
-  pre01.innerText += '\nINFO: touch started at (' + x_start + ', ' + y_start + ')' ;
+  pre01.innerText = 'INFO: touch started at (' + x_start + ', ' + y_start + ')' ;
   pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
 }
@@ -85,8 +85,8 @@ function canvas01Touchstop(ev)
   pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' stoped at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
 
-  sx = calculateDistanceWithinDomain(x_stop - x_start, sx, iw - canvas01.width) ;
-  sy = calculateDistanceWithinDomain(y_stop - y_start, sy, ih - canvas01.height) ;
+  sx = calculateDistanceWithinDomain(x_start - x_stop, sx, iw - canvas01.width) ;
+  sy = calculateDistanceWithinDomain(y_start - y_stop, sy, ih - canvas01.height) ;
   pre01.innerText += '\nINFO: (' + sx + ', ' + sy +')' ;
   updateCanvas01() ;
 }
