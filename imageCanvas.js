@@ -82,6 +82,8 @@ function canvas01Touchstop(ev)
   pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' stoped at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
 
+  sx = calculateDistanceWithinDomain(x_stop - x_start, sx, iw - canvas01.width) ;
+  sy = calculateDistanceWithinDomain(y_stop - y_start, sy, ih - canvas01.height) ;
   updateCanvas01() ;
 }
 
@@ -91,4 +93,21 @@ function canvas01Touchcancel()
 
 function canvas01Touchmove()
 {
+}
+
+function calculateDistanceWithinDomain(p1, p2, p3)
+{
+  const v = p1 ;
+  const d1 = p2 ;  // distance from Zero
+  const d2 = p3 ;
+  let d3 = d1 + v ;
+  if (d3 < 0)
+  {
+    d3 = 0 ;
+  }
+  else if (d3 > d2)
+  {
+    d3 = d2 ;
+  }
+  return d3 ;
 }
