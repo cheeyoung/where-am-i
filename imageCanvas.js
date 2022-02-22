@@ -17,7 +17,7 @@ var img = new Image() ;
 var iw, ih ;
 var sx, sy ;
 var dx, dy, dw, dh ;
-img.addEventListener('load', imgLoad(), false) ;
+img.addEventListener('load', function() { handleImageLoad(img) }, false) ;
 
 var x_start, y_start, x_stop, y_stop ;
 canvas01.addEventListener('touchstart', canvas01Touchstart, false) ;
@@ -32,15 +32,15 @@ document.getElementById('section-main').insertBefore(pre01, document.getElementB
 
 img.src = 'https://img9.yna.co.kr/photo/yna/YH/2019/05/23/PYH2019052319550001300_P4.jpg' ;
 
-function imgLoad()
+function handleImageLoad(i)
 {
-  iw = img.naturalWidth ;
-  ih = img.naturalHeight ;
+  iw = i.naturalWidth ;
+  ih = i.naturalHeight ;
   canvas01.height = 300 ;
   sx = 0 ; sy = 0 ;
   canvas02.height = 300 ;
   dx = 0 ; dy = 0 ; dw = 0 ; dh = 0 ;
-  pre01.innerText = 'INFO: (' + iw + ', ' + ih + ')' ;
+  pre01.innerText = 'INFO: ' + iw + ' x ' + ih ;
   updateCanvas01() ;
 }
 
