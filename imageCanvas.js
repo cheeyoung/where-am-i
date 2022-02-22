@@ -17,7 +17,7 @@ var img = new Image() ;
 var iw, ih ;
 var sx, sy ;
 var dx, dy, dw, dh ;
-img.addEventListener('load', setImgContentMetadata(), false) ;
+img.addEventListener('load', imgLoad(), false) ;
 
 var x_start, y_start, x_stop, y_stop ;
 canvas01.addEventListener('touchstart', canvas01Touchstart, false) ;
@@ -32,7 +32,7 @@ document.getElementById('section-main').insertBefore(pre01, document.getElementB
 
 img.src = 'https://img9.yna.co.kr/photo/yna/YH/2019/05/23/PYH2019052319550001300_P4.jpg' ;
 
-function setImgContentMetadata()
+function imgLoad()
 {
   iw = img.naturalWidth ;
   ih = img.naturalHeight ;
@@ -40,6 +40,8 @@ function setImgContentMetadata()
   sx = 0 ; sy = 0 ;
   canvas02.height = 300 ;
   dx = 0 ; dy = 0 ; dw = 0 ; dh = 0 ;
+  pre01.innerText = 'INFO: (' + iw + ', ' + ih + ')' ;
+  updateCanvas01() ;
 }
 
 function updateCanvas01()
@@ -47,7 +49,8 @@ function updateCanvas01()
   const cw = canvas01.width ;
   const ch = canvas01.height ;
   let ctx = canvas01.getContext('2d') ;
-  ctx.drawImage(img, sx, sy, cw, ch, 0, 0, cw, ch) ;  // cRect.x and cRect.y are 0
+  ctx.drawImage(img, sx, sy, cw, ch, 0, 0, cw, ch) ;
+  pre01.innerText += '\nINFO: (' + sx + ', ' + sy + '), (' + cw + ', ' + ch + ')' ;
 }
 
 function updateCanvas02()
@@ -65,7 +68,7 @@ function canvas01Touchstart(ev)
   // save the 1st touch
   x_start = touches[0].clientX - r.left ;
   y_start = touches[0].clientY - r.top ;
-  pre01.innerText = 'INFO: touch started at (' + x_start + ', ' + y_start + ')' ;
+  pre01.innerText += '\nINFO: touch started at (' + x_start + ', ' + y_start + ')' ;
   pre01.innerText += '\nINFO: touch ' + touches[0].identifier + ' started at (' + touches[0].clientX + ', ' + touches[0].clientY + ') on ' + touches[0].target.id ;
   pre01.innerText += '\nINFO: Bounding Rect (' + r.left + ', ' + r.top + '), (' + r.right + ', ' + r.bottom + ')' ;
 }
@@ -84,6 +87,7 @@ function canvas01Touchstop(ev)
 
   sx = calculateDistanceWithinDomain(x_stop - x_start, sx, iw - canvas01.width) ;
   sy = calculateDistanceWithinDomain(y_stop - y_start, sy, ih - canvas01.height) ;
+  pre01.innerText += '\nINFO: (' + sx + ', ' + sy +')' ;
   updateCanvas01() ;
 }
 
