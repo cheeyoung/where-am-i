@@ -50,7 +50,7 @@ function updateCanvas01()
   const ch = canvas01.height ;
   let ctx = canvas01.getContext('2d') ;
   ctx.drawImage(img, sx, sy, cw, ch, 0, 0, cw, ch) ;
-  pre01.innerText += '\nINFO: (' + sx + ', ' + sy + '), (' + cw + ', ' + ch + ')' ;
+  pre01.innerText += '\nINFO: (' + sx + ', ' + sy + '), ' + cw + ' x ' + ch ;
 }
 
 function updateCanvas02()
