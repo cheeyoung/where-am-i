@@ -41,15 +41,19 @@ function handleImageLoad(i)
   canvas02.height = 300 ;
   dx = 0 ; dy = 0 ; dw = 0 ; dh = 0 ;
   //pre01.innerText = 'INFO: ' + iw + ' x ' + ih ;
-  updateCanvas01() ;
+  updateCanvas01(canvas01, i, sx, sy) ;
 }
 
-function updateCanvas01()
+function updateCanvas01(p1, p2, p3, p4)
 {
-  const cw = canvas01.width ;
-  const ch = canvas01.height ;
-  let ctx = canvas01.getContext('2d') ;
-  ctx.drawImage(img, sx, sy, cw, ch, 0, 0, cw, ch) ;
+  let c = p1 ;
+  let i = p2 ;
+  const sx = p3 ;
+  const sy = p4 ;
+  const cw = c.width ;
+  const ch = c.height ;
+  let ctx = c.getContext('2d') ;
+  ctx.drawImage(i, sx, sy, cw, ch, 0, 0, cw, ch) ;
   pre01.innerText += '\nINFO: (' + sx + ', ' + sy + '), ' + cw + ' x ' + ch + ', ' + iw + ' x ' + ih ;
 }
 
@@ -88,7 +92,7 @@ function canvas01Touchstop(ev)
   sx = calculateDistanceWithinDomain(x_start - x_stop, sx, iw - canvas01.width) ;
   sy = calculateDistanceWithinDomain(y_start - y_stop, sy, ih - canvas01.height) ;
   pre01.innerText += '\nINFO: (' + sx + ', ' + sy +')' ;
-  updateCanvas01() ;
+  updateCanvas01(canvas01, img, sx, sy) ;
 }
 
 function canvas01Touchcancel()
