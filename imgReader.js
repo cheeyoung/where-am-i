@@ -27,7 +27,7 @@ document.getElementById('section-main').insertBefore(canvas02, document.getEleme
 document.getElementById('section-main').insertBefore(input01, document.getElementById('script-trackpad')) ;
 
 //
-img.src = 'https://img9.yna.co.kr/photo/yna/YH/2019/05/23/PYH2019052319550001300_P4.jpg' ;
+//img.src = 'https://img9.yna.co.kr/photo/yna/YH/2019/05/23/PYH2019052319550001300_P4.jpg' ;
 
 // Event Handlers
 
