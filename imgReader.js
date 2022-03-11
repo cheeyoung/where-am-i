@@ -5,26 +5,37 @@ var x_start, y_start ;  // PosTouch
 var rectOnCanvas ;  // x, y, width, and height
 var canvas01 = document.createElement('canvas') ;
 var canvas02 = document.createElement('canvas') ;
+var input01 = document.createElement('input') ;
 
 //
 canvas01.id = "canvas01" ;  // image-trackpad-01
 canvas02.id = "canvas02" ;  // image-trackpad-02
-canvas01.width = 300 ; canvas01.height = 200 ;
-canvas02.width = 300 ; canvas02.height = 200 ;
+canvas01.width = 300 ; canvas01.height = 1 ;
+canvas02.width = 300 ; canvas02.height = 1 ;
+input01.type = "file" ;
+input01.id = "input01" ;
 
 // Event Handler Registration
 img.addEventListener('load', function() { handleImgLoad(img) }, false) ;
 canvas01.addEventListener('touchstart', handleCanvas01Touchstart, false) ;
 canvas01.addEventListener('touchend', handleCanvas01Touchstop, false) ;
+input01.addEventListener('change', function() { handleInput01Change(input01.files[0]) }, false) ;
 
 // insert the element to the section(document)
 document.getElementById('section-main').insertBefore(canvas01, document.getElementById('script-trackpad')) ;
 document.getElementById('section-main').insertBefore(canvas02, document.getElementById('script-trackpad')) ;
+document.getElementById('section-main').insertBefore(input01, document.getElementById('script-trackpad')) ;
 
 //
 img.src = 'https://img9.yna.co.kr/photo/yna/YH/2019/05/23/PYH2019052319550001300_P4.jpg' ;
 
 // Event Handlers
+
+function handleInput01Change(p1)
+{
+  const str = p1 ;  // file01.files[0]
+  img.src = URL.createObjectURL(str) ;
+}
 
 function handleImgLoad(i)
 {
