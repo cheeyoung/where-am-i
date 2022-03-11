@@ -81,3 +81,20 @@ function calculateAspectRatio(p1, p2)
   const h = p2 ;
   return w / h ;
 }
+
+function calculateDistanceWithinDomain(p1, p2, p3)
+{
+  const v = p1 ;
+  const d1 = p2 ;  // distance from Zero
+  const d2 = p3 ;
+  let d3 = d1 + v ;
+  if (d3 < 0)
+  {
+    d3 = 0 ;
+  }
+  else if (d3 > d2)
+  {
+    d3 = d2 ;
+  }
+  return d3 ;
+}
