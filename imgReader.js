@@ -1,3 +1,69 @@
+//
+var img = new Image() ;
+var posOnImage ;  // x and y
+var x_start, y_start ;  // PosTouch
+var rectOnCanvas ;  // x, y, width, and height
+var canvas01 = document.createElement('canvas') ;
+var canvas02 = document.createElement('canvas') ;
+
+//
+canvas01.id = "canvas01" ;  // image-trackpad-01
+canvas02.id = "canvas02" ;  // image-trackpad-02
+canvas01.width = 300 ; canvas01.height = 200 ;
+canvas02.width = 300 ; canvas02.height = 200 ;
+
+// Event Handler Registration
+img.addEventListener('load', function() { handleImgLoad(img) }, false) ;
+canvas01.addEventListener('touchstart', handleCanvas01Touchstart, false) ;
+canvas01.addEventListener('touchend', handleCanvas01Touchstop, false) ;
+
+// insert the element to the section(document)
+document.getElementById('section-main').insertBefore(canvas01, document.getElementById('script-trackpad')) ;
+document.getElementById('section-main').insertBefore(canvas02, document.getElementById('script-trackpad')) ;
+
+//
+img.src = 'https://img9.yna.co.kr/photo/yna/YH/2019/05/23/PYH2019052319550001300_P4.jpg' ;
+
+// Event Handlers
+
+function handleImgLoad(i)
+{
+  const iar = calculateAspectRatio(i.naturalWidth, i.naturalHeight) ;
+  setCanvasSize(canvas01, iar) ;
+  setCanvasSize(canvas02, iar) ;
+  posOnImage = JSON.parse('{ "x" : 0, "y" : 0 }') ;
+  drawImageToPosOnImage(canvas01, img, posOnImage) ;
+  rectOnCanvas = calculateRectOnCanvas(canvas02, iar) ;
+  drawImageToRectOnCanvas(canvas02, img, rectOnCanvas) ;
+}
+
+function handleCanvas01Touchstart(ev)
+{
+  ev.preventDefault() ;
+  let r = canvas01.getBoundingClientRect() ;
+  let touches = ev.changedTouches ;  // an array of touch objects
+  
+  // save the the coordinate of the touch
+  x_start = touches[0].clientX - r.left ;
+  y_start = touches[0].clientY - r.top ;
+}
+
+function handleCanvas01Touchstop(ev)
+{
+  ev.preventDefault() ;
+  let r = canvas01.getBoundingClientRect() ;
+  let touches = ev.changedTouches ;
+  
+  const x_stop = touches[0].clientX - r.left ;
+  const y_stop = touches[0].clientY - r.top ;
+  const x_new = calculateDistanceWithinDomain(x_start - x_stop, posOnImage.x, img.naturalWidth - canvas01.width) ;
+  const y_new = calculateDistanceWithinDomain(y_start - y_stop, posOnImage.y, img.naturalHeight - canvas01.height) ;
+  posOnImage = JSON.parse('{ "x" : ' + x_new + ', "y" : ' + y_new + ' }') ;
+  drawImageToPosOnImage(canvas01, img, posOnImage) ;
+}
+
+// Sub routines
+
 // drawImage into sub-Rectangle on (Canvas|Image)
 
 function drawImageToRectOnCanvas(p1, p2, p3)  // c(anvas), i(mage), and r(ectangle)
@@ -9,7 +75,7 @@ function drawImageToRectOnCanvas(p1, p2, p3)  // c(anvas), i(mage), and r(ectang
   ctx.drawImage(si, r.x, r.y, r.width, r.height) ;
 }
 
-function drawImageToRectOnImage(p1, p2, p3)  // c(anvas), i(mage), and p(osition)
+function drawImageToPosOnImage(p1, p2, p3)  // c(anvas), i(mage), and p(osition)
 {
   let c = p1 ;
   let si = p2 ;
@@ -21,7 +87,7 @@ function drawImageToRectOnImage(p1, p2, p3)  // c(anvas), i(mage), and p(osition
 
 // calculate then set the Size of the Canvas
 
-function setCanvasSize(p1, p2)  // Real number, the Aspect Ratio of the image
+function setCanvasSize(p1, p2)  // c(anvas) and Real number, the Aspect Ratio of the image
 {
   let c = p1 ;
   const iar = p2 ;
